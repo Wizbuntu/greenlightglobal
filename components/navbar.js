@@ -59,9 +59,9 @@ export default function Navbar() {
                         <li><a href="#">Apply Now</a></li>
                         <li><a href="#">Contact Us</a></li>
                         <li><a href="#">FAQs</a></li>
-                        <li class="current-menu-item has-menu-child">
+                        <li className="current-menu-item has-menu-child">
                         <a href="#">Events</a>
-                        <ul class="sub-menu">
+                        <ul className="sub-menu">
                             <li><a href="home-01.html">Training</a></li>
                             <li><a href="home-02.html">Conference/Seminar</a></li>
                           

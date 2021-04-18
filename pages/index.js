@@ -21,7 +21,7 @@ export default function Home() {
             </div>
         </div>
     </section>
-
+  
 
     {/* About Section */}
     <section className="about">
@@ -72,7 +72,7 @@ export default function Home() {
               <span><img src="images/icons/map-marker.png" alt="" />1313 E. Sibley Blvd Dolton. IL. 60419. USA</span>
              
               <a href="mailto:"><img src="images/icons/email.png" alt=""/>admin@greenlightglobal.org</a>
-            </address>
+                </address>
                 </div>
                 <div className="col-md-8">
                     <form action="home-01.html">
