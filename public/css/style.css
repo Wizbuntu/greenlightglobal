@@ -78,10 +78,10 @@ section {
 
 
 /**
-  *
-  * Common CSS
-  *
-  */
+ *
+ * Common CSS
+ *
+ */
 
 @media screen and (max-width: 767px) {
     section {
@@ -375,8 +375,8 @@ section {
 
 
 /**
-  * Header style
-  */
+ * Header style
+ */
 
 .header {
     display: block;
@@ -460,8 +460,8 @@ section {
 
 
 /**
-  * Navigation menu
-  */
+ * Navigation menu
+ */
 
 .navbar {
     padding: 0;
@@ -603,8 +603,8 @@ section {
 
 
 /**
-  * Header style
-  */
+ * Header style
+ */
 
 .header {
     display: block;
@@ -688,8 +688,8 @@ section {
 
 
 /**
-  * Navigation menu
-  */
+ * Navigation menu
+ */
 
 .navbar {
     padding: 0;
@@ -831,8 +831,8 @@ section {
 
 
 /*************************
-  * Banner section
-  */
+ * Banner section
+ */
 
 .banner {
     background-color: #f7f7f7;
@@ -883,8 +883,8 @@ section {
 
 
 /*************************
-  * Features section
-  */
+ * Features section
+ */
 
 .about .content-box-fluid h2 {
     font-size: 42px;
@@ -972,8 +972,8 @@ section {
 
 
 /*************************
-  * Features section
-  */
+ * Features section
+ */
 
 .iconBox {
     border: 5px solid #f6f7fb;
@@ -1022,8 +1022,8 @@ section {
 
 
 /*************************
-  * Features section
-  */
+ * Features section
+ */
 
 .funfacts {
     background-color: #162b45;
@@ -1088,8 +1088,8 @@ section {
 
 
 /*************************
-  * Wroks section
-  */
+ * Wroks section
+ */
 
 .works .pb-50 {
     padding-bottom: 80px;
@@ -1115,8 +1115,8 @@ section {
 
 
 /*************************
-  * Testimonial section
-  */
+ * Testimonial section
+ */
 
 @media screen and (max-width: 767px) {
     .tesimonial .video-box {
@@ -1154,8 +1154,8 @@ section {
 
 
 /*************************
-  * Team section
-  */
+ * Team section
+ */
 
 .team .single-memb,
 .team .post-item {
@@ -1231,8 +1231,8 @@ section {
 
 
 /*************************
-  * Latest News section
-  */
+ * Latest News section
+ */
 
 .post-item h5 {
     margin-bottom: 25px;
@@ -1285,8 +1285,8 @@ section {
 
 
 /*************************
-  * Contact section
-  */
+ * Contact section
+ */
 
 .contact .contact-info span,
 .contact .contact-info a {
@@ -1328,8 +1328,8 @@ section {
 
 
 /*************************
-  * Partners section
-  */
+ * Partners section
+ */
 
 .partners-logo img {
     max-width: 186px;
@@ -1420,8 +1420,8 @@ section {
 
 
 /*************************
-  * Footer
-  */
+ * Footer
+ */
 
 .footer {
     position: relative;
