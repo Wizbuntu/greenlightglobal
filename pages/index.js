@@ -1,4 +1,8 @@
 
+// footer component
+import Footer from '../components/footer'
+
+
 // export default Home component
 export default function Home() {
   return (
@@ -93,7 +97,7 @@ export default function Home() {
         </div>
     </section>
 
-
+    <Footer/>
     </div>
   )
 }

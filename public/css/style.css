@@ -127,7 +127,7 @@ section {
     padding-bottom: 0 !important;
 }
 
-.btn {
+.btn-main {
     color: #fff;
     display: inline-block;
     font-size: 16px;
@@ -1313,13 +1313,9 @@ section {
 }
 
 .contact form .form-control {
-    border: 1px solid #e5e6ea;
-    border-radius: 0;
-    padding: 20px 25px;
     font-size: 14px;
     color: #999;
-    margin-bottom: 30px;
-    height: 60px;
+    margin-bottom: 20px;
 }
 
 .contact form textarea.form-control {
