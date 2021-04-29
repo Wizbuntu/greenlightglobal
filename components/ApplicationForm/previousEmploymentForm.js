@@ -1,5 +1,7 @@
 import {Fragment, useState} from 'react'
 
+// toaster
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const previousEmploymentForm = (props) => {
@@ -32,7 +34,14 @@ const previousEmploymentForm = (props) => {
         ]
 
         // validate dynamicForm data
-        
+        for(let dForm of Object.keys(dynamicForm[0])) {
+            if(!dynamicForm[0][dForm]) {
+                return toast.error("Some fields are still empty, please check")
+            }
+        }
+
+        // pass _previousEmployment Data to parent component 
+        props.previousEmployment(_previousEmploymentFormData)
 
         // invoke nextStep func
         props.nextStep()
@@ -105,6 +114,7 @@ const previousEmploymentForm = (props) => {
                
                 <section className="contact">
                     <div className="container mt-4">
+                        <Toaster/>
                         <h1 className="mb-4">Previous Employment</h1>
                      
                         <div className="row">
@@ -117,11 +127,11 @@ const previousEmploymentForm = (props) => {
                                 <div className="row">
                                     <div className="col-sm-6">
                                         <label>Company</label>
-                                        <input onChange={(event) => handleChange(index, 'company', event)} type="text" className="form-control" placeholder="Company " />
+                                        <input value={dForm.company || ''} onChange={(event) => handleChange(index, 'company', event)} type="text" className="form-control" placeholder="Company " />
                                     </div>
                                     <div className="col-sm-6">
-                                        <label>Phone</label>
-                                        <input onChange={(event) => handleChange(index, 'phone', event)} type="number" className="form-control" placeholder="Phone" />
+                                        <label>Phone</label> 
+                                        <input value={dForm.phone || ''} onChange={(event) => handleChange(index, 'phone', event)} type="number" className="form-control" placeholder="Phone" />
                                     </div>
                                 </div>
 
@@ -129,11 +139,11 @@ const previousEmploymentForm = (props) => {
                                  <div className="row">
                                     <div className="col-sm-6">
                                     <label>Address</label>
-                                        <input onChange={(event) => handleChange(index, 'address', event)} type="text" className="form-control" placeholder="Address" />
+                                        <input value={dForm.address || ''} onChange={(event) => handleChange(index, 'address', event)} type="text" className="form-control" placeholder="Address" />
                                     </div>
                                     <div className="col-sm-6">
                                     <label>Supervisor</label>
-                                        <input onChange={(event) => handleChange(index, 'supervisor', event)} type="text" className="form-control" placeholder="Supervisor" />
+                                        <input value={dForm.supervisor || ''} onChange={(event) => handleChange(index, 'supervisor', event)} type="text" className="form-control" placeholder="Supervisor" />
                                     </div>
                                 </div>
 
@@ -141,15 +151,15 @@ const previousEmploymentForm = (props) => {
                                  <div className="row">
                                     <div className="col-sm-4">
                                     <label>Job Title</label>
-                                        <input onChange={(event) => handleChange(index, 'jobTitle', event)} type="text" className="form-control" placeholder="Job Title" />
+                                        <input value={dForm.jobTitle || ''} onChange={(event) => handleChange(index, 'jobTitle', event)} type="text" className="form-control" placeholder="Job Title" />
                                     </div>
                                     <div className="col-sm-4">
                                     <label>Starting Salary ($)</label>
-                                        <input  onChange={(event) => handleChange(index, 'startingSalary', event)} type="text" className="form-control" placeholder="Starting Salary" />
+                                        <input value={dForm.startingSalary || ''}  onChange={(event) => handleChange(index, 'startingSalary', event)} type="text" className="form-control" placeholder="Starting Salary" />
                                     </div>
                                     <div className="col-sm-4">
                                     <label>Ending Salary ($)</label>
-                                        <input onChange={(event) => handleChange(index, 'endingSalary', event)} type="text" className="form-control" placeholder="Ending Salary" />
+                                        <input value={dForm.endingSalary || ''} onChange={(event) => handleChange(index, 'endingSalary', event)} type="text" className="form-control" placeholder="Ending Salary" />
                                     </div>
                                 </div>
 
@@ -157,17 +167,17 @@ const previousEmploymentForm = (props) => {
                                  <div className="row">
                                     <div className="col-md-4">
                                         <label>Responsibilities</label>
-                                    <input type="text" onChange={(event) => handleChange(index, 'responsibilities', event)} className="form-control" placeholder="Responsibilities"/>
+                                    <input value={dForm.responsibilities || ''} type="text" onChange={(event) => handleChange(index, 'responsibilities', event)} className="form-control" placeholder="Responsibilities"/>
                                     </div>
 
                                     <div className="col-md-4">
                                         <label>From</label>
-                                    <input type="number"  onChange={(event) => handleChange(index, 'from', event)} className="form-control" placeholder="Enter Year"/>
+                                    <input value={dForm.from || ''} type="number"  onChange={(event) => handleChange(index, 'from', event)} className="form-control" placeholder="Enter Year"/>
                                     </div>
 
                                     <div className="col-md-4">
                                         <label>To</label>
-                                        <input type="number" onChange={(event) => handleChange(index, 'to', event)} className="form-control" placeholder="Enter Year"/>
+                                        <input value={dForm.to || ''} type="number" onChange={(event) => handleChange(index, 'to', event)} className="form-control" placeholder="Enter Year"/>
                                     </div>
                                 </div>
 
@@ -175,7 +185,7 @@ const previousEmploymentForm = (props) => {
                                 <div className="row">
                                     <div className="col-md-12">
                                         <label>Reason for Leaving</label>
-                                        <textarea onChange={(event) => handleChange(index, 'reasonForLeaving', event)} className="form-control" placeholder="Reason for leaving"></textarea>
+                                        <textarea value={dForm.reasonForLeaving || ''} onChange={(event) => handleChange(index, 'reasonForLeaving', event)} className="form-control" placeholder="Reason for leaving"></textarea>
                                     </div>
                                 </div>
 
@@ -183,7 +193,7 @@ const previousEmploymentForm = (props) => {
                                     <div className="col-md-6">
                                     <div className="form-group">
                                         <label>May we contact your previous supervisor for a reference?</label>
-                                        <select onChange={(event) => handleChange(index, 'mayWeContactYourSupervisor', event)} className="form-control">
+                                        <select value={dForm.mayWeContactYourSupervisor || ''} onChange={(event) => handleChange(index, 'mayWeContactYourSupervisor', event)} className="form-control">
                                             <option value="">select option</option>
                                             <option value="yes">Yes</option>
                                             <option value="no">No</option>

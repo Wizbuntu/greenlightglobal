@@ -79,7 +79,7 @@ const educationForm = (props) => {
         <section className="contact">
                     <div className="container">
                         <Toaster/>
-                        <h1 className="mb-4">Education</h1>
+                        <h1 className="mb-5">Education</h1>
                         <div className="row">
                             <div className="col-md-12">
 
@@ -96,7 +96,7 @@ const educationForm = (props) => {
                                         <input type="text" value={highSchoolAddress} onChange={handleChange('highSchoolAddress')} className="form-control" placeholder="Address" />
                                     </div>
                                 </div>
-                                <div className="row">
+                                <div className="row mb-5">
                                    
                                     <div className="col-sm-4">
                                     <label>From</label>
@@ -121,14 +121,14 @@ const educationForm = (props) => {
                                 <div className="row">
                                     <div className="col-sm-6">
                                     <label>College</label>
-                                        <input value={college} onChange={handleChange('college')} type="text" className="form-control" placeholder="High School" />
+                                        <input value={college} onChange={handleChange('college')} type="text" className="form-control" placeholder="College" />
                                     </div>
                                     <div className="col-sm-6">
                                     <label>Address</label>
                                         <input value={collegeAddress} onChange={handleChange('collegeAddress')} type="text" className="form-control" placeholder="Address" />
                                     </div>
                                 </div>
-                                <div className="row">
+                                <div className="row mb-5">
                                     <div className="col-sm-4">
                                     <label>From</label>
                                         <input value={collegeFrom} onChange={handleChange('collegeFrom')} type="number" className="form-control" placeholder="Enter Year" />
@@ -152,7 +152,7 @@ const educationForm = (props) => {
                                 <div className="row">
                                     <div className="col-sm-6">
                                     <label>Other</label>
-                                        <input value={other} onChange={handleChange('other')} type="text" className="form-control" placeholder="High School" />
+                                        <input value={other} onChange={handleChange('other')} type="text" className="form-control" placeholder="Other" />
                                     </div>
                                     <div className="col-sm-6">
                                     <label>Address</label>

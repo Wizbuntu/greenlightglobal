@@ -127,23 +127,19 @@ const applicantInformation = (props) => {
                         
                         {/* MI and date */}
                         <div className="row">
-                            <div className="col-md-5">
+                            <div className="col-md-6">
                             <label>M.I</label>
                             <input type="text" className="form-control" value={mi} onChange={handleChange('mi')} placeholder="MI" required />
                             </div>
 
-                            <div className="col-md-3">
                            
-                           </div>
 
-                            <div className="col-md-4">
-                            <label>Date (select date)</label>
+                            <div className="col-md-6">
+                                
+                            <label style={{display: "block"}}>Date</label>
                                 <DatePicker placeholderText="Date" className="form-control" selected={startDate} onChange={date => setStartDate(date)}/>
                             </div>
 
-                            
-
-                            
                         </div>
                        
                         <div className="row">
@@ -198,8 +194,11 @@ const applicantInformation = (props) => {
                         {/* Date Applied, Social security number & Desired salary */}
                         <div className="row">
                             <div className="col-md-4">
-                            <label>Date Applied</label>
+                                <div className="form-group">
+                                <label style={{display: "block"}}>Date Applied</label>
                                 <DatePicker placeholderText="Date Applied" className="form-control" selected={dateApplied} onChange={date => setDateApplied(date)}/>
+                                </div>
+                            
                             </div>
 
                             <div className="col-md-4">

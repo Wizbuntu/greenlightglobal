@@ -53,6 +53,14 @@ const Apply = () => {
     console.log(applyData)
   }
 
+  // init previousEmployment
+  const previousEmployment = (_previousEmployment) => {
+    // update applyData state
+    setApplyData({...applyData, 'previousEmploymentData': _previousEmployment})
+
+    console.log(applyData)
+  }
+
 
   return (
     <div>
@@ -63,7 +71,7 @@ const Apply = () => {
                 <ApplicantInformation applicantInformation = {(_applicantInfo) => applicantInformation(_applicantInfo)}/>
                 <EducationForm educationFormData = {(_educationData => educationFormData(_educationData))}/>
                 <ReferenceForm referenceFormData = {(_referenceData) => referenceFormData(_referenceData)}/>
-                <PreviousEmployment/>   
+                <PreviousEmployment previousEmployment = {(_previousEmployment) => previousEmployment(_previousEmployment)}/>   
                 <MilitaryService/> 
                 <ProfessionalLicensure/>
             </StepWizard>
