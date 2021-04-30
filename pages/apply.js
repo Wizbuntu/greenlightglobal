@@ -61,6 +61,14 @@ const Apply = () => {
     console.log(applyData)
   }
 
+  // init militaryServiceForm 
+  const militaryServiceForm = (_militaryServiceData) => {
+    // update applyData State
+    setApplyData({...applyData, 'militaryService': _militaryServiceData})
+
+    console.log(applyData)
+  }
+
 
   return (
     <div>
@@ -72,7 +80,7 @@ const Apply = () => {
                 <EducationForm educationFormData = {(_educationData => educationFormData(_educationData))}/>
                 <ReferenceForm referenceFormData = {(_referenceData) => referenceFormData(_referenceData)}/>
                 <PreviousEmployment previousEmployment = {(_previousEmployment) => previousEmployment(_previousEmployment)}/>   
-                <MilitaryService/> 
+                <MilitaryService militaryServiceForm = {(_militaryService) => militaryServiceForm(_militaryService)}/> 
                 <ProfessionalLicensure/>
             </StepWizard>
          

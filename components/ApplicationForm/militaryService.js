@@ -1,9 +1,80 @@
-import {Fragment} from 'react'
+import {Fragment, useState} from 'react'
+
+// react coutry state selector
+import {RegionDropdown, CountryRegionData } from 'react-country-region-selector';
+
+// toaster
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const militaryService = (props) => {
 
+
+    // init militaryServiceData state
+    const [militaryServiceData, setMilitaryServiceData] = useState({
+        branch: '',
+        from: '',
+        to: '',
+        rankAtDischarge: '',
+        typeOfDischarge: '',
+        ifAnyOtherThanHonourableExplain: ''
+    })
+
+    // destructure militaryService
+    const {branch, from, to, rankAtDischarge, typeOfDischarge, ifAnyOtherThanHonourableExplain} = militaryServiceData
+
+    // init nextOfKin state 
+    const [nextOfKin, setNextOfKin] = useState({
+        lastName: '',
+        firstName: '',
+        MI: '',
+        streetAddress: '',
+        apartment: '',
+        city: '',
+        zipCode: ''
+    })
+
+    // init usaState 
+    const [usaState, setUsaState] = useState("")
+
+    // destructure nextOfKin
+    const {lastName, firstName, MI, streetAddress, apartment, city, zipCode} = nextOfKin
+
+
+    // init handle militaryService Change
+    const militaryServiceChange =(data) => (event) => {
+        // update militaryService state 
+        setMilitaryServiceData({...militaryServiceData, [data]: event.target.value})
+
+        console.log(militaryServiceData)
+    }
+
+    // handle nextOfKinChange
+    const handleNextOfKinChange = (data) => (event) => {
+        setNextOfKin({...nextOfKin, [data]: event.target.value})
+        console.log(nextOfKin)
+    }
+
      // init hanleNext
      const handleNext = () => {
+
+        // validate nextOfKin 
+        if(!(firstName && lastName && streetAddress && apartment && city && usaState && zipCode)) {
+            return toast.error("Some fields are empty, please check")
+        }
+
+        // get _militaryServiceData
+        const _militaryService = {
+            ...militaryServiceData,
+            "nextOfKin": {...nextOfKin},
+            usaState: usaState
+        }
+
+         // pass data to parent component 
+        props.militaryServiceForm(_militaryService)
+
+       
+        // invoke nextStep func
         props.nextStep()
     }
 
@@ -12,11 +83,14 @@ const militaryService = (props) => {
         props.previousStep()
     }
 
+    
+
     return (
         <Fragment>
 
                 <section className="contact">
                     <div className="container mt-4">
+                        <Toaster/>
                         <h1 className="mb-4">Military Service</h1>
                      
                         <div className="row">
@@ -27,15 +101,15 @@ const militaryService = (props) => {
                                 <div className="row">
                                     <div className="col-sm-4">
                                         <label>Branch</label>
-                                        <input type="text" className="form-control" placeholder="Branch"/>
+                                        <input value={branch} onChange={militaryServiceChange('branch')} type="text" className="form-control" placeholder="Branch"/>
                                     </div>
                                     <div className="col-sm-4">
                                         <label>From</label>
-                                        <input type="number" className="form-control"placeholder="From" />
+                                        <input value={from} onChange={militaryServiceChange('from')} type="number" className="form-control"placeholder="From" />
                                     </div>
                                     <div className="col-sm-4">
                                         <label>To</label>
-                                        <input type="number" className="form-control"placeholder="To" />
+                                        <input value={to} onChange={militaryServiceChange('to')} type="number" className="form-control"placeholder="To" />
                                     </div>
                                 </div>
 
@@ -43,11 +117,11 @@ const militaryService = (props) => {
                                 <div className="row">
                                     <div className="col-sm-6">
                                         <label>Rank at Discharge</label>
-                                        <input type="text" className="form-control" placeholder="Rank at Discharge"/>
+                                        <input value={rankAtDischarge} onChange={militaryServiceChange('rankAtDischarge')} type="text" className="form-control" placeholder="Rank at Discharge"/>
                                     </div>
                                     <div className="col-sm-6">
                                         <label>Type of Discharge</label>
-                                        <input type="number" className="form-control"placeholder="Type of Discharge" />
+                                        <input value={typeOfDischarge} onChange={militaryServiceChange('typeOfDischarge')} type="text" className="form-control"placeholder="Type of Discharge" />
                                     </div>
                                     
                                 </div>
@@ -56,7 +130,7 @@ const militaryService = (props) => {
                                 <div className="row">
                                     <div className="col-md-12">
                                         <label>If other than honorable, explain</label>
-                                    <textarea name="" className="form-control" placeholder="If other than honorable, explain"></textarea>
+                                    <textarea value={ifAnyOtherThanHonourableExplain} onChange={militaryServiceChange('ifAnyOtherThanHonourableExplain')} className="form-control" placeholder="If other than honorable, explain"></textarea>
                                     </div>
                                 </div>
                                 
@@ -79,15 +153,15 @@ const militaryService = (props) => {
                                 <div className="row">
                                     <div className="col-sm-4">
                                         <label>Last Name</label>
-                                        <input type="text" className="form-control" placeholder="Last Name"/>
+                                        <input value={lastName} onChange={handleNextOfKinChange('lastName')} type="text" className="form-control" placeholder="Last Name"/>
                                     </div>
                                     <div className="col-sm-4">
                                         <label>First Name</label>
-                                        <input type="number" className="form-control"placeholder="First Name" />
+                                        <input value={firstName} onChange={handleNextOfKinChange('firstName')} type="text" className="form-control"placeholder="First Name" />
                                     </div>
                                     <div className="col-sm-4">
                                         <label>M.I</label>
-                                        <input type="text" className="form-control"placeholder="M.I." />
+                                        <input value={MI} onChange={handleNextOfKinChange('MI')} type="text" className="form-control"placeholder="M.I." />
                                     </div>
                                 </div>
 
@@ -95,30 +169,41 @@ const militaryService = (props) => {
                                 <div className="row">
                                     <div className="col-sm-6">
                                         <label>Street Address</label>
-                                        <input type="text" className="form-control" placeholder="Street Address"/>
+                                        <input value={streetAddress} onChange={handleNextOfKinChange('streetAddress')} type="text" className="form-control" placeholder="Street Address"/>
                                     </div>
                                     <div className="col-sm-6">
                                         <label>Apartment/Unit</label>
-                                        <input type="text" className="form-control"placeholder="Apartment/Unit" />
+                                        <input value={apartment} onChange={handleNextOfKinChange('apartment')} type="text" className="form-control"placeholder="Apartment/Unit" />
                                     </div>
                                     
                                 </div>
 
                                 {/* City State and Zip */}
                                 <div className="row">
-                                    <div className="col-md-4">
-                                        <label>City</label>
-                                        <input type="text" className="form-control"placeholder="City" />
-                                    </div>
+
+                                <div className="col-md-4">
+                                        <label>State</label>
+                                        <RegionDropdown
+                                            classes="form-control"
+                                            country={"US"}
+                                            defaultOptionLabel="Select State"
+                                            value={usaState}
+                                            countryValueType="short"
+                                            onChange={(val) => setUsaState(val)}/>
+                                        
+                                </div>
+
 
                                     <div className="col-md-4">
-                                        <label>State</label>
-                                        <input type="text" className="form-control"placeholder="State" />
+                                        <label>City</label>
+                                        <input value={city} onChange={handleNextOfKinChange('city')} type="text" className="form-control"placeholder="City" />
                                     </div>
+
+                                    
 
                                     <div className="col-md-4">
                                         <label>Zip</label>
-                                        <input type="text" className="form-control"placeholder="Zip" />
+                                        <input value={zipCode} onChange={handleNextOfKinChange('zipCode')} type="text" className="form-control"placeholder="Zip" />
                                     </div>
                                 </div>
                                 
