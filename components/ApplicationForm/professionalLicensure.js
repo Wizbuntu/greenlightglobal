@@ -62,7 +62,15 @@ const professionalLicensure = (props) => {
         if(!(aboveSixteen && validLicense && cprCertification && physicalTest && excludedFromMedicare && disciplinedByProfessionalBoard)) {
             return toast.error("Some fields are empty, please check")
         }
-        props.nextStep()
+
+        // get _finalData 
+        const _finalData = {
+            ...workSchedule,
+            ...applicantDeclaration
+        }
+
+        // pass data to parent component 
+        props.submitForms(_finalData)
     }
 
     // init handlePrevious

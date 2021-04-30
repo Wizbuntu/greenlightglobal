@@ -4,6 +4,9 @@ import {useState} from 'react'
 // import StepWizard form
 import StepWizard from "react-step-wizard";
 
+// import axios 
+import axios from 'axios'
+
 // Applicant Information
 import ApplicantInformation from '../components/ApplicationForm/applicantInformation'
 
@@ -69,6 +72,14 @@ const Apply = () => {
     console.log(applyData)
   }
 
+  // init submitForm 
+  const submitForms = (_finalData) => {
+    // update applyData state 
+    setApplyData({...applyData, 'applicantDeclaration': _finalData})
+
+    // 
+  }
+
 
   return (
     <div>
@@ -81,7 +92,7 @@ const Apply = () => {
                 <ReferenceForm referenceFormData = {(_referenceData) => referenceFormData(_referenceData)}/>
                 <PreviousEmployment previousEmployment = {(_previousEmployment) => previousEmployment(_previousEmployment)}/>   
                 <MilitaryService militaryServiceForm = {(_militaryService) => militaryServiceForm(_militaryService)}/> 
-                <ProfessionalLicensure/>
+                <ProfessionalLicensure submitForms = {(_finalData) => submitForms(_finalData)}/>
             </StepWizard>
          
         </div>
