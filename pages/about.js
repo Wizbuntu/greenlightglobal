@@ -5,7 +5,7 @@ const About = () => {
 
                 {/* About Section */}
 
-    <section className="banner">
+    <section className="banner" style={{marginTop: 80}}>
         <div className="container">
             <div className="row align-items-center">
                 <div className="col-md-12">
