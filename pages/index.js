@@ -2,6 +2,10 @@
 // footer component
 import Footer from '../components/footer'
 
+// import Link
+import Link from 'next/link'
+
+
 // import useState 
 import {useState} from 'react'
 
@@ -87,8 +91,8 @@ export default function Home() {
                 <div className="col-md-6 order-1 order-md-0">
                     <div className="content-box">
                         <h2>Greenlight Global Agency</h2>
-                        <p>Greenlight Global Agency bridges the gap between critical staffing needs and healthcare facilities in the U.S by making long-term matches of qualified internationally educated nurses.</p>
-                        <a href="#" className="btn btn-success ">Apply Now</a>
+                        <p className="mb-0">Greenlight Global Agency bridges the gap between critical staffing needs and healthcare facilities in the U.S by making long-term matches of qualified internationally educated nurses.</p>
+                        <Link href="/apply"><a className="btn btn-success">Apply Now</a></Link>
                     </div>
                 </div>
                 <div className="col-md-6 order-0 order-md-1">
@@ -129,7 +133,7 @@ export default function Home() {
                         <p>Qualified internationally educated nurses receive all credentialing, immigration, and legal fees free of charge. In addition, they are provided with American cultural and clinical skills training in preparation for success at advanced
                             U.S.
                         </p>
-                        <a href="#" className="btn btn-success">Read More</a>
+                        <Link href="/about"><a className="btn btn-success">Read More</a></Link>
                     </div>
                 </div>
             </div>
@@ -143,8 +147,11 @@ export default function Home() {
             <div className="row">
                 <div className="col-md-4">
                     <div className="sec-heading">
-                        <span className="tagline text-success">contact us</span>
-                        <h3 className="sec-title">Don’t Hesitate, Ask Any Query</h3>
+                        <span className="tagline text-success">Request Information</span>
+                        <p>If you have questions regarding our programs, class schedules, fees, and other general
+                        inquiries, please use the form to request for more information. We will answer your
+                        inquiries as soon as possible.</p>
+                        <h3 >Don’t Hesitate To Request Any Information</h3>
                     </div>
                     <address className="contact-info">
               <span><img src="images/icons/map-marker.png" alt="" />1313 E. Sibley Blvd Dolton. IL. 60419. USA</span>
