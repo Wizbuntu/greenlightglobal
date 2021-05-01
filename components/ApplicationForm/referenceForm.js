@@ -114,7 +114,7 @@ const referenceForm = (props) => {
                                 <div className="row">
                                     <div className="col-sm-6">
                                         <label>Company</label>
-                                        <input value={reference1Company} onChange={handleChange('reference1Company')} type="text" className="form-control" id="" placeholder="Full Name" />
+                                        <input value={reference1Company} onChange={handleChange('reference1Company')} type="text" className="form-control" id="" placeholder="Company" />
                                     </div>
                                     <div className="col-sm-6">
                                         <label>Phone</label>

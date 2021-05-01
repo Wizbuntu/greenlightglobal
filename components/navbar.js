@@ -1,6 +1,9 @@
 // Head
 import Head from 'next/head'
 
+// import Link
+import Link from 'next/link'
+
 // useEffect
 import {useEffect} from 'react'
 
@@ -35,7 +38,7 @@ export default function Navbar() {
         <link rel="stylesheet" href="/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/css/themify-icons.css" />
         <link rel="stylesheet" href="/css/owl.carousel.min.css" />
-        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="/css/style.css" />
       </Head>
 
 
@@ -44,30 +47,38 @@ export default function Navbar() {
             <div className="container">
                 <nav className="navbar">
                     {/* <!-- Site logo --> */}
+                    <Link href="/">
                     <a className="logo">
-                        <img src="/images/green_logo.png" alt="" />
+                       
+                        <img src="/images/green_logo.png" alt="green light" />
+                      
+                        
                     </a>
+                    </Link>
 
                     <a id="mobile-menu-toggler">
                         <i className="ti-align-justify"></i>
                     </a>
                     <ul className="navbar-nav">
                         <li>
-                            <a href="#">Home</a>
+                            <Link href="/">Home</Link>
                         </li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Apply Now</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><Link href="/about">About Us</Link></li>
+                        <li><Link href="/apply">Apply Now</Link></li>
                         <li><a href="#">FAQs</a></li>
+                        <li><Link href="/healthcare/facilities">For Healthcare Facilities</Link></li>
+                       
+
                         <li className="current-menu-item has-menu-child">
-                        <a href="#">Events</a>
-                        <ul className="sub-menu">
-                            <li><a href="home-01.html">Training</a></li>
-                            <li><a href="home-02.html">Conference/Seminar</a></li>
-                          
-                        </ul>
+                            <a href="#">Events</a>
+                            <ul className="sub-menu">
+                                <li><Link href="/training">Training</Link></li>
+                                <li><a href="#">Conference/Seminar</a></li>
+                            
+                            </ul>
                         </li>
-                        <li><a href="#">For Healthcare Facilities</a></li>
+
+                       
                      
                     </ul>
                 </nav>

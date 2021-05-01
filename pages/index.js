@@ -2,13 +2,87 @@
 // footer component
 import Footer from '../components/footer'
 
+// import useState 
+import {useState} from 'react'
+
+// import axios 
+import axios from 'axios'
+
+// toaster
+import toast, { Toaster } from 'react-hot-toast';
+
+
 
 // export default Home component
 export default function Home() {
+
+   
+
+    // init Loading state
+    const [Loading, setLoading] = useState(false)
+
+    // init contact state
+    const [contact, setContact] = useState({
+        fullName: "",
+        phone: "",
+        email: "",
+        message: ""
+    })
+
+    // destructure contact 
+    const {fullName, phone, email, message} = contact
+
+
+    // init handleChange 
+    const handleChange = (data) => (event) => {
+        // update contact state 
+        setContact({...contact, [data]: event.target.value})
+    }
+
+
+    // init handleSubmit 
+    const handleSubmit = (event) => {
+        // update Loading state 
+        setLoading(true)
+
+        // preventDefault 
+        event.preventDefault()
+
+        // init contactData 
+        const contactData = contact
+
+        // send data to contact endpoint
+        axios.post('/api/contact', contactData)
+        .then(({data}) => {
+            // update Loading state 
+            setLoading(false)
+
+            // if not success
+            if(!data.success) {
+                return toast.error(data.data)
+            }
+
+            // clear state 
+            setContact({...contact, 
+                fullName: '',
+                phone: '',
+                email: '',
+                message: ''
+            })
+
+            // return success 
+            return toast.success(data.data)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+
   return (
     <div>
     <section className="banner">
         <div className="container">
+            <Toaster/>
             <div className="row align-items-center">
                 <div className="col-md-6 order-1 order-md-0">
                     <div className="content-box">
@@ -79,18 +153,21 @@ export default function Home() {
                 </address>
                 </div>
                 <div className="col-md-8">
-                    <form action="home-01.html">
+                    <form onSubmit={(event) => handleSubmit(event)}>
                         <div className="row">
                             <div className="col-sm-6">
-                                <input type="text" className="form-control" id="" placeholder="Full Name" required />
+                                <input value={fullName} onChange={handleChange('fullName')} type="text" className="form-control"  placeholder="Full Name" required />
                             </div>
                             <div className="col-sm-6">
-                                <input type="text" className="form-control" id="" placeholder="Phone" />
+                                <input value={phone} onChange={handleChange('phone')} type="text" className="form-control"  placeholder="Phone" required/>
                             </div>
                         </div>
-                        <input type="email" className="form-control" id="" placeholder="Email" required />
-                        <textarea name="" className="form-control" placeholder="Your Message" required></textarea>
-                        <button type="submit" className="btn btn-success">send message</button>
+                        <input value={email} onChange={handleChange('email')} type="email" className="form-control" id="" placeholder="Email" required />
+                        <textarea value={message} onChange={handleChange('message')} className="form-control" placeholder="Your Message" required></textarea>
+                        {Loading ? <button type="button" className="btn btn-success" disabled>Loading...</button> : 
+                        <button type="submit" className="btn btn-success">Send Message</button>
+                        }
+                        
                     </form>
                 </div>
             </div>

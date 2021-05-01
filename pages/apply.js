@@ -7,6 +7,10 @@ import StepWizard from "react-step-wizard";
 // import axios 
 import axios from 'axios'
 
+// toaster
+import toast, { Toaster } from 'react-hot-toast';
+
+
 // Applicant Information
 import ApplicantInformation from '../components/ApplicationForm/applicantInformation'
 
@@ -32,8 +36,11 @@ import ProfessionalLicensure from '../components/ApplicationForm/professionalLic
 // init apply form page
 const Apply = () => {
 
-  // inti applyData state
+  // init applyData state
   const [applyData, setApplyData] = useState({})
+
+  // init Loading state 
+  const [Loading, setLoading] = useState(false)
 
   // init applicantInformation 
   const applicantInformation = (_applicantInfo) => {
@@ -74,10 +81,36 @@ const Apply = () => {
 
   // init submitForm 
   const submitForms = (_finalData) => {
+    // setLoading to true
+    setLoading(true)
+
     // update applyData state 
     setApplyData({...applyData, 'applicantDeclaration': _finalData})
 
-    // 
+    // get submitApplyData
+    const submitApplyData = {
+      ...applyData
+    }
+
+    // post request to sendMail endpoint 
+    axios.post('/api/apply', submitApplyData)
+    .then(({data}) => {
+      // setLoading to false
+      setLoading(false)
+
+        // check if not success
+        if(!data.success) {
+          return toast.error(data.data)
+        }
+
+        // toast success
+        return toast.success(data.data)
+    })
+    .catch((error) => {
+      // setLoading to false
+      setLoading(false)
+      console.log(error)
+    })
   }
 
 
@@ -85,7 +118,7 @@ const Apply = () => {
     <div>
       <section className="banner" style={{backgroundColor: "inherit"}}>
         <div className="container">
-         
+            <Toaster/>
             <StepWizard>
                 <ApplicantInformation applicantInformation = {(_applicantInfo) => applicantInformation(_applicantInfo)}/>
                 <EducationForm educationFormData = {(_educationData => educationFormData(_educationData))}/>
@@ -94,6 +127,9 @@ const Apply = () => {
                 <MilitaryService militaryServiceForm = {(_militaryService) => militaryServiceForm(_militaryService)}/> 
                 <ProfessionalLicensure submitForms = {(_finalData) => submitForms(_finalData)}/>
             </StepWizard>
+            {Loading &&  <div className="container">
+           <center><p className="badge badge-secondary text-center">Sending...</p></center>
+          </div>}
          
         </div>
       </section>
